@@ -103,10 +103,10 @@
 		let selectedLowerCategory = 'Skirt';
 
 		function changeLowerCategory(category) {
-			selectedCategory = category;
+			selectedLowerCategory = category;
 			document.getElementById("LowerGalleryTitle").innerHTML = category;
 			// Re-render the gallery
-			renderUpperGallery();
+			renderLowerGallery();
 		}
 
 		function renderLowerGallery() {
