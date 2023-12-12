@@ -42,12 +42,12 @@
 
 <body>
 
-  <h2>687's Closet</h2>
+  <h2>687's Closet V2</h2>
 
   <div id="UpperGalleryTitles">
     <h3 id="UpperGalleryTitle">Sweater</h3>
 	<div id="galleryButtons">
-		<button onclick="changeUpperCategory('Sweater')">Sweater</button>
+	<button onclick="changeUpperCategory('Sweater')">Sweater</button>
      	<button onclick="changeUpperCategory('Blouse')">Blouse</button>
         <button onclick="changeUpperCategory('Jacket')">Jacket</button>
 	</div>
@@ -74,7 +74,7 @@
         for (let i = 1; i <= 10; i++) {
           const img = document.createElement("img");
           img.classList.add("thumbnail");
-          img.src = `cloth/${selectedCategory}/${i}.jpg`;
+          img.src = `cloth/Sweater/1.jpg`;
           img.onclick = function() {
             selectPhoto(this, 'upper');
           };
@@ -91,7 +91,7 @@
   <div id="LowerGalleryTitles">
     <h3 id="LowerGalleryTitle">Skirt</h3>
 	<div id="galleryButtons">
-		<button onclick="changeLowerCategory('Skirt')">Skirt</button>
+	<button onclick="changeLowerCategory('Skirt')">Skirt</button>
      	<button onclick="changeLowerCategory('Jeans')">Jeans</button>
         <button onclick="changeLowerCategory('Pants')">Pants</button>
 	</div>
@@ -117,7 +117,7 @@
         for (let i = 1; i <= 10; i++) {
           const img = document.createElement("img");
           img.classList.add("thumbnail");
-          img.src = `cloth/${selectedLowerCategory}/${i}.jpg`;
+          img.src = `cloth/Jeans/1.jpg`;
           img.onclick = function() {
             selectPhoto(this, 'lower');
           };
