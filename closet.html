@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>687's Closet</title>
+  <style>
+    /* Add your own styles for better appearance */
+    .container {
+      display: flex;
+    }
+
+    .gallery-container {
+      flex: 1;
+    }
+
+    .selected-photos-container {
+      flex: 1;
+      margin-left: 20px; /* Adjust the margin as needed */
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .thumbnail {
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .selected {
+      border: 2px solid red;
+    }
+
+    #selected-photos {
+      margin-top: 20px;
+    }
+
+    #selectedUpper img {
+      width: 150px; /* Larger size for selected photos */
+      height: 150px;
+      margin: 5px;
+    }
+
+    #selectedLower img {
+      width: 180px; /* Larger size for selected photos */
+      height: 220px;
+      margin: 5px;
+    }
+
+    #UpperGalleryTitles,
+    #LowerGalleryTitles {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #galleryButtons button {
+      margin-left: 10px;
+    }
+    
+    .selected-photos {
+      display: flex;
+    }
+    
+    .selected-photos img {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>687's Closet</h2>
+
+  <div class="container">
+    <div class="gallery-container">
+      <div id="UpperGalleryTitles">
+        <h3 id="UpperGalleryTitle">Tshirt</h3>
+        <div id="galleryButtons">
+          <button onclick="changeUpperCategory('Sweater')">Sweater</button>
+          <button onclick="changeUpperCategory('Blouse')">Tshirt</button>
+          <button onclick="changeUpperCategory('Jacket')">Jacket</button>
+        </div>
+      </div>
+
+      <div class="gallery" id="upperGallery">
+        <!-- Upper Gallery -->
+        <script>
+          let selectedCategory = 'Tshirt';
+
+          function changeUpperCategory(category) {
+            selectedCategory = category;
+            document.getElementById("UpperGalleryTitle").innerHTML = category;
+            // Re-render the gallery
+            renderUpperGallery();
+          }
+
+          function renderUpperGallery() {
+            // Clear existing content
+            document.getElementById("upperGallery").innerHTML = "";
+
+            // Use a for loop to generate the upper gallery with the selected category
+            for (let i = 1; i <= 10; i++) {
+              const img = document.createElement("img");
+              img.classList.add("thumbnail");
+              img.src = `cloth/${selectedCategory}/${i}.png`;
+              img.onclick = function() {
+                selectPhoto(this, 'upper');
+              };
+
+              document.getElementById("upperGallery").appendChild(img);
+            }
+          }
+
+          // Initial render
+          renderUpperGallery();
+        </script>
+      </div>
+
+      <div id="LowerGalleryTitles">
+        <h3 id="LowerGalleryTitle">Pants</h3>
+        <div id="galleryButtons">
+          <button onclick="changeLowerCategory('Pants')">Pants</button>
+          <button onclick="changeLowerCategory('Skirt')">Skirt</button>
+          <button onclick="changeLowerCategory('Trousers')">Trousers</button>
+        </div>
+      </div>
+
+      <div class="gallery" id="lowerGallery">
+        <!-- Lower Gallery -->
+        <script>
+          let selectedLowerCategory = 'Pants';
+
+          function changeLowerCategory(category) {
+            selectedLowerCategory = category;
+            document.getElementById("LowerGalleryTitle").innerHTML = category;
+            // Re-render the gallery
+            renderLowerGallery();
+          }
+
+          function renderLowerGallery() {
+            // Clear existing content
+            document.getElementById("lowerGallery").innerHTML = "";
+
+            // Use a for loop to generate the lower gallery with the selected category
+            for (let i = 1; i <= 10; i++) {
+              const img = document.createElement("img");
+              img.classList.add("thumbnail");
+              img.src = `cloth/${selectedLowerCategory}/${i}.png`;
+              img.onclick = function() {
+                selectPhoto(this, 'lower');
+              };
+
+              document.getElementById("lowerGallery").appendChild(img);
+            }
+          }
+
+          // Initial render
+          renderLowerGallery();
+        </script>
+      </div>
+    </div>
+
+    <div class="selected-photos-container">
+      <div id="selected-photos">
+        <h3>Overview</h3>
+        <div id="selectedUpper" class="selected-photos"></div>
+        <div id="selectedLower" class="selected-photos"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedUpperPhoto = null;
+    let selectedLowerPhoto = null;
+
+    function selectPhoto(element, galleryType) {
+      // Remove previous selection from the same gallery
+      if (galleryType === 'upper') {
+        if (selectedUpperPhoto !== null) {
+          selectedUpperPhoto.classList.remove("selected");
+        }
+        selectedUpperPhoto = element;
+      } else {
+        if (selectedLowerPhoto !== null) {
+          selectedLowerPhoto.classList.remove("selected");
+        }
+        selectedLowerPhoto = element;
+      }
+
+      // Toggle selection
+      element.classList.toggle("selected");
+
+      // Update the selected photos display
+      updateSelectedPhotosDisplay();
+    }
+
+    function updateSelectedPhotosDisplay() {
+      const selectedUpper = document.getElementById("selectedUpper");
+      const selectedLower = document.getElementById("selectedLower");
+
+      // Display selected upper photo
+      selectedUpper.innerHTML = "";
+      if (selectedUpperPhoto !== null) {
+        const imgUpper = document.createElement("img");
+        imgUpper.src = selectedUpperPhoto.src;
+        imgUpper.classList.add("thumbnail");
+        selectedUpper.appendChild(imgUpper);
+      }
+
+      // Display selected lower photo
+      selectedLower.innerHTML = "";
+      if (selectedLowerPhoto !== null) {
+        const imgLower = document.createElement("img");
+        imgLower.src = selectedLowerPhoto.src;
+        imgLower.classList.add("thumbnail");
+        selectedLower.appendChild(imgLower);
+      }
+    }
+  </script>
+
+</body>
+</html>
