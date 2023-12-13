@@ -25,8 +25,8 @@
     }
 
     .thumbnail {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       margin: 5px;
       cursor: pointer;
     }
@@ -40,15 +40,13 @@
     }
 
     #selectedUpper img {
-      width: 150px; /* Larger size for selected photos */
-      height: 150px;
-      margin: 5px;
+      width: 140px; /* Larger size for selected photos */
+      height: 140px;
     }
 
     #selectedLower img {
-      width: 180px; /* Larger size for selected photos */
-      height: 220px;
-      margin: 5px;
+      width: 140px; /* Larger size for selected photos */
+      height: 190px;
     }
 
     #UpperGalleryTitles,
@@ -73,15 +71,34 @@
 
 <body>
 
-  <h2>687's Closet</h2>
+  <h2 id="UserTitle">687's Closet</h2>
+  <div id="userButtons">
+    <button onclick="changeUser('687')">687</button>
+    <button onclick="changeUser('FYG')">FYG</button>
+    <script>
+      let selectedUser = '687';
+
+      function changeUser(name) {
+        selectedUser= name;
+        document.getElementById("UserTitle").innerHTML = name + "'s Closet";
+        // Re-render the gallery
+        renderUpperGallery();
+        renderLowerGallery();
+      }
+
+
+      renderUpperGallery();
+      renderLowerGallery();
+    </script>
+  </div>
 
   <div class="container">
     <div class="gallery-container">
       <div id="UpperGalleryTitles">
         <h3 id="UpperGalleryTitle">Tshirt</h3>
         <div id="galleryButtons">
-          <button onclick="changeUpperCategory('Sweater')">Sweater</button>
           <button onclick="changeUpperCategory('Tshirt')">Tshirt</button>
+          <button onclick="changeUpperCategory('Sweater')">Sweater</button>
           <button onclick="changeUpperCategory('Jacket')">Jacket</button>
         </div>
       </div>
@@ -106,7 +123,7 @@
             for (let i = 1; i <= 10; i++) {
               const img = document.createElement("img");
               img.classList.add("thumbnail");
-              img.src = `cloth/${selectedCategory}/${i}.png`;
+              img.src = selectedUser + `/${selectedCategory}/${i}.png`;
               img.onclick = function() {
                 selectPhoto(this, 'upper');
               };
@@ -149,7 +166,7 @@
             for (let i = 1; i <= 10; i++) {
               const img = document.createElement("img");
               img.classList.add("thumbnail");
-              img.src = `cloth/${selectedLowerCategory}/${i}.png`;
+              img.src = selectedUser + `/${selectedLowerCategory}/${i}.png`;
               img.onclick = function() {
                 selectPhoto(this, 'lower');
               };
