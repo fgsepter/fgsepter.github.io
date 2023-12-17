@@ -31,8 +31,8 @@
     .thumbnail {
       width: auto;
       height: auto;
-      width: 120px;
-      height: 120px;
+      max-width: 120px;
+      max-height: 120px;
       margin: 5px;
       cursor: pointer;
     }
@@ -59,8 +59,8 @@
     #selectedLower img {
       width: auto;
       height: auto;
-      max-width: 220px; /* Larger size for selected photos */
-      max-height: 220px;
+      max-width: 210px; /* Larger size for selected photos */
+      max-height: 210px;
     }
 
     #UpperGalleryTitles,
@@ -91,6 +91,19 @@
     <button onclick="changeUser('FYG')">FYG</button>
     <script>
       let selectedUser = '687';
+
+      const imageCounts = {};
+      imageCounts["Coat"] = 0;
+      imageCounts["Hoodie"] = 3;
+      imageCounts["Jacket"] = 0;
+      imageCounts["Pants"] = 0;
+      imageCounts["Shirt"] = 0;
+      imageCounts["Skirt"] = 9;
+      imageCounts["Sweater"] = 0;
+      imageCounts["Tshirt"] = 3;
+
+
+
 
       function changeUser(name) {
         selectedUser= name;
@@ -137,7 +150,7 @@
             document.getElementById("upperGallery").innerHTML = "";
 
             // Use a for loop to generate the upper gallery with the selected category
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= imageCounts[selectedCategory]; i++) {
               const img = document.createElement("img");
               img.classList.add("thumbnail");
               img.src = selectedUser + `/${selectedCategory}/${i}.png`;
@@ -155,18 +168,17 @@
       </div>
 
       <div id="LowerGalleryTitles">
-        <h3 id="LowerGalleryTitle">Pants</h3>
+        <h3 id="LowerGalleryTitle">Skirt</h3>
         <div id="galleryButtons">
           <button onclick="changeLowerCategory('Pants')">Pants</button>
           <button onclick="changeLowerCategory('Skirt')">Skirt</button>
-          <button onclick="changeLowerCategory('Trousers')">Trousers</button>
         </div>
       </div>
 
       <div class="gallery" id="lowerGallery">
         <!-- Lower Gallery -->
         <script>
-          let selectedLowerCategory = 'Pants';
+          let selectedLowerCategory = 'Skirt';
 
           function changeLowerCategory(category) {
             selectedLowerCategory = category;
@@ -179,8 +191,7 @@
             // Clear existing content
             document.getElementById("lowerGallery").innerHTML = "";
 
-            // Use a for loop to generate the lower gallery with the selected category
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= imageCounts[selectedLowerCategory]; i++) {
               const img = document.createElement("img");
               img.classList.add("thumbnail");
               img.src = selectedUser + `/${selectedLowerCategory}/${i}.png`;
