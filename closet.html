@@ -25,6 +25,8 @@
     }
 
     .thumbnail {
+      width: auto;
+      height: auto;
       width: 120px;
       height: 120px;
       margin: 5px;
@@ -40,13 +42,17 @@
     }
 
     #selectedUpper img {
-      width: 200px; /* Larger size for selected photos */
-      height: 200px;
+      width: auto;
+      height: auto;
+      max-width: 200px; /* Larger size for selected photos */
+      max-height: 200px;
     }
 
     #selectedLower img {
-      width: 200px; /* Larger size for selected photos */
-      height: 200px;
+      width: auto;
+      height: auto;
+      max-width: 220px; /* Larger size for selected photos */
+      max-height: 220px;
     }
 
     #UpperGalleryTitles,
@@ -241,7 +247,7 @@
         const imgLower = document.createElement("img");
         imgLower.src = selectedLowerPhoto.src;
         imgLower.classList.add("thumbnail");
-        imgUpper.addEventListener("click", function () {
+        imgLower.addEventListener("click", function () {
           const previewWindow = window.open(selectedLowerPhoto.src, "Lower Preview", "width=800, height=800");
         });
         selectedLower.appendChild(imgLower);
