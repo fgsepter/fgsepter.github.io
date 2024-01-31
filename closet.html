@@ -93,17 +93,17 @@
       let selectedUser = '687';
 
       const imageCounts = {};
-      imageCounts["Coat"] = 1;
-      imageCounts["Summer"] = 6;
+      imageCounts["Coat"] = 2;
+      imageCounts["Summer"] = 5;
       imageCounts["Dress"] = 3;
       imageCounts["Hoodie"] = 4;
       imageCounts["Pants"] = 11;
       imageCounts["Shirt"] = 0;
       imageCounts["Skirt"] = 15;
-      imageCounts["Sweater"] = 20;
+      imageCounts["Sweater"] = 21;
       imageCounts["Tshirt"] = 3;
       imageCounts["Shorts"] = 9;
-      imageCounts["Long-Sleeve"] = 4;
+      imageCounts["Long-Sleeve"] = 6;
 
 
 
@@ -128,7 +128,6 @@
         <h3 id="UpperGalleryTitle">Sweater</h3>
         <div id="galleryButtons">
           <button onclick="changeUpperCategory('Tshirt')">Tshirt</button>
-          <button onclick="changeUpperCategory('Shirt')">Shirt</button>
           <button onclick="changeUpperCategory('Summer')">Summer</button>
           <button onclick="changeUpperCategory('Dress')">Dress</button>
           <button onclick="changeUpperCategory('Sweater')">Sweater</button>
@@ -158,7 +157,7 @@
             for (let i = 1; i <= imageCounts[selectedCategory]; i++) {
               const img = document.createElement("img");
               img.classList.add("thumbnail");
-              img.src = selectedUser + `/${selectedCategory}/${i}.png`;
+              img.src = selectedUser + `/${selectedCategory}/${i}_thumb.png`;
               img.onclick = function() {
                 selectPhoto(this, 'upper');
               };
@@ -200,7 +199,7 @@
             for (let i = 1; i <= imageCounts[selectedLowerCategory]; i++) {
               const img = document.createElement("img");
               img.classList.add("thumbnail");
-              img.src = selectedUser + `/${selectedLowerCategory}/${i}.png`;
+              img.src = selectedUser + `/${selectedLowerCategory}/${i}_thumb.png`;
               img.onclick = function() {
                 selectPhoto(this, 'lower');
               };
@@ -261,7 +260,7 @@
         imgUpper.src = selectedUpperPhoto.src;
         imgUpper.classList.add("thumbnail");
         imgUpper.addEventListener("click", function () {
-          const previewWindow = window.open(selectedUpperPhoto.src, "Upper Preview", "width=800, height=800");
+          const previewWindow = window.open(selectedUpperPhoto.src.replace(/_thumb\.png$/, '.png'), "Upper Preview", "width=800, height=800");
         });
         selectedUpper.appendChild(imgUpper);
       }
@@ -273,7 +272,7 @@
         imgLower.src = selectedLowerPhoto.src;
         imgLower.classList.add("thumbnail");
         imgLower.addEventListener("click", function () {
-          const previewWindow = window.open(selectedLowerPhoto.src, "Lower Preview", "width=800, height=800");
+          const previewWindow = window.open(selectedLowerPhoto.src.replace(/_thumb\.png$/, '.png'), "Lower Preview", "width=800, height=800");
         });
         selectedLower.appendChild(imgLower);
       }
