@@ -11,7 +11,7 @@ def create_thumbnail(input_path, output_path, size=(128, 128)):
         print(f"Error creating a thumbnail for {input_path}: {e}")
 
 # Usage
-folders = ['Coat', 'Dress', 'Hoodie', 'Long-Sleeve', 'Pants', 'Shorts', 'Skirt', 'Summer', 'Sweater', 'Tshirt']
+folders = ['Coat', 'Dress', 'Hoodie', 'Long-Sleeve', 'Pants', 'Shorts', 'Skirt', 'Summer', 'Sweater', 'Tshirt', 'Cardigan']
 for folder in folders:
     for i in range(1,100):
         input_image = f'687/{folder}/{i}.png'
